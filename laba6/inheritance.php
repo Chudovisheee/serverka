@@ -82,8 +82,6 @@ $paidLesson = new PaidLesson(
     99.90
 );
 
-var_dump($paidLesson);
-
 echo "\n--- Информация об уроке ---\n";
 echo "Заголовок: " . $paidLesson->getTitle() . "\n";
 echo "Текст: " . $paidLesson->getText() . "\n";
