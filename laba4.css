@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.calculator {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.display {
+    margin-bottom: 20px;
+}
+
+.display input {
+    width: 100%;
+    height: 80px;
+    font-size: 32px;
+    text-align: right;
+    padding: 10px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    background: #f9f9f9;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 1px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    flex: 1;
+    height: 60px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #f0f0f0;
+    color: #333;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.num {
+    background: #fff;
+    color: #333;
+}
+
+.op {
+    background: #ff9800;
+    color: white;
+}
+
+.memory, .fn {
+    background: #2196f3;
+    color: white;
+}
+
+.clear {
+    background: #f44336;
+    color: white;
+}
+
+.equals {
+    background: #4caf50;
+    color: white;
+}
+
+.backspace {
+    background: #9e9e9e;
+    color: white;
+}
+
+.zero {
+    flex: 2;
+}
+
+.info {
+    margin-top: 15px;
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+}
+
+.error {
+    color: #f44336;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+    padding: 5px;
+    background: #ffebee;
+    border-radius: 5px;
+}
+
+@media (max-width: 480px) {
+    .btn {
+        height: 50px;
+        font-size: 16px;
+    }
+    
+    .display input {
+        height: 60px;
+        font-size: 24px;
+    }
+}

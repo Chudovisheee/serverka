@@ -1,0 +1,435 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Quicksand', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #F9F5FF 0%, #FDF8F5 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ШАПКА */
+header {
+    background: linear-gradient(135deg, #B39CD0 0%, #C5B4E3 100%);
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 15px rgba(179, 156, 208, 0.3);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #4A3B5C;
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: #4A3B5C;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    background: rgba(255,255,255,0.2);
+}
+
+nav a:hover {
+    background: #8B6BC8;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* ОСНОВНОЙ КОНТЕНТ */
+main {
+    flex: 1;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* ПОДВАЛ */
+footer {
+    background: linear-gradient(135deg, #B39CD0 0%, #A085C5 100%);
+    color: #4A3B5C;
+    text-align: center;
+    padding: 15px;
+    margin-top: auto;
+    font-weight: 500;
+}
+
+/* КАРТОЧКИ КНИГ */
+.book-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.book-card {
+    background: #FFF9FB;
+    width: 240px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(179, 156, 208, 0.25);
+    transition: all 0.3s ease;
+    border: 1px solid #E6D0E6;
+}
+
+.book-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(179, 156, 208, 0.4);
+}
+
+.book-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+}
+
+.book-card h4 {
+    padding: 12px 12px 5px;
+    font-size: 16px;
+    color: #4A3B5C;
+}
+
+.book-card p {
+    padding: 0 12px;
+    color: #8B7B9B;
+    font-size: 14px;
+}
+
+.book-card .price {
+    display: block;
+    padding: 10px 12px;
+    color: #F4A0B5;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.book-card a {
+    display: block;
+    padding: 12px;
+    background: linear-gradient(135deg, #C5B4E3 0%, #B39CD0 100%);
+    color: #4A3B5C;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.book-card a:hover {
+    background: linear-gradient(135deg, #8B6BC8 0%, #B39CD0 100%);
+    color: white;
+}
+
+/* СТАТИСТИКА */
+.stats-grid {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin: 40px 0;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    background: #FFF9FB;
+    padding: 30px;
+    border-radius: 25px;
+    text-align: center;
+    min-width: 200px;
+    box-shadow: 0 8px 20px rgba(179, 156, 208, 0.2);
+    border: 1px solid #E6D0E6;
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: scale(1.03);
+}
+
+.big-number {
+    font-size: 52px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #F4A0B5 0%, #C5B4E3 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 15px 0;
+}
+
+.equation-info {
+    background: #F3EAF5;
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 30px;
+    border-left: 5px solid #F4A0B5;
+}
+
+/* ФОРМЫ */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #4A3B5C;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #E6D0E6;
+    border-radius: 15px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: #FFF9FB;
+}
+
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: #C5B4E3;
+    box-shadow: 0 0 0 3px rgba(197, 180, 227, 0.3);
+}
+
+/* КНОПКИ */
+.btn, .btn-save, .btn-add, .btn-buy {
+    display: inline-block;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #C5B4E3 0%, #B39CD0 100%);
+    color: #4A3B5C;
+    text-decoration: none;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.btn:hover, .btn-save:hover, .btn-add:hover, .btn-buy:hover {
+    background: linear-gradient(135deg, #8B6BC8 0%, #C5B4E3 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(139, 107, 200, 0.4);
+}
+
+.btn-delete {
+    background: linear-gradient(135deg, #E8A0A0 0%, #D48B8B 100%);
+    color: white;
+}
+
+.btn-delete:hover {
+    background: linear-gradient(135deg, #D48B8B 0%, #C07070 100%);
+    transform: translateY(-2px);
+}
+
+.btn-cancel {
+    background: linear-gradient(135deg, #C0B5D0 0%, #B0A5C0 100%);
+    color: #4A3B5C;
+}
+
+/* ДЕТАЛЬНАЯ СТРАНИЦА КНИГИ */
+.book-detail {
+    display: flex;
+    gap: 40px;
+    background: #FFF9FB;
+    padding: 35px;
+    border-radius: 30px;
+    flex-wrap: wrap;
+    box-shadow: 0 8px 25px rgba(179, 156, 208, 0.2);
+    border: 1px solid #E6D0E6;
+}
+
+.book-cover-large img {
+    width: 320px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.book-info {
+    flex: 1;
+}
+
+.book-info .price {
+    font-size: 32px;
+    color: #F4A0B5;
+    font-weight: bold;
+}
+
+.book-info .author {
+    color: #8B7B9B;
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+/* ТАБЛИЦА КОНТАКТОВ */
+.contacts-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #FFF9FB;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(179, 156, 208, 0.2);
+}
+
+.contacts-table th, .contacts-table td {
+    padding: 12px 15px;
+    border: 1px solid #E6D0E6;
+    text-align: left;
+}
+
+.contacts-table th {
+    background: linear-gradient(135deg, #C5B4E3 0%, #B39CD0 100%);
+    color: #4A3B5C;
+    font-weight: bold;
+}
+
+.contacts-table tr:hover {
+    background: #F3EAF5;
+}
+
+/* КОРЗИНА */
+.cart-calculator {
+    background: #FFF9FB;
+    padding: 25px;
+    border-radius: 25px;
+    margin-bottom: 30px;
+    border: 1px solid #E6D0E6;
+    box-shadow: 0 5px 15px rgba(179, 156, 208, 0.15);
+}
+
+.result {
+    margin-top: 20px;
+    padding: 15px;
+    background: #C8E6C9;
+    border-radius: 15px;
+    color: #2E7D32;
+}
+
+/* ПРОФИЛЬ */
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 4px solid #C5B4E3;
+    box-shadow: 0 5px 15px rgba(179, 156, 208, 0.3);
+}
+
+.avatar-section {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* УВЕДОМЛЕНИЯ */
+.success {
+    background: #C8E6C9;
+    color: #2E7D32;
+    padding: 12px 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    border-left: 5px solid #4CAF50;
+}
+
+.error {
+    background: #FFCDD2;
+    color: #C62828;
+    padding: 12px 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    border-left: 5px solid #E53935;
+}
+
+/* ПРИВЕТСТВИЕ */
+.greeting-box {
+    background: linear-gradient(135deg, #FFF9FB 0%, #F9F5FF 100%);
+    padding: 50px;
+    border-radius: 35px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(179, 156, 208, 0.25);
+    border: 1px solid #E6D0E6;
+}
+
+.greeting-box h1 {
+    color: #4A3B5C;
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+/* СТРАНИЦА 404 */
+.error-404 {
+    text-align: center;
+    padding: 60px;
+    background: #FFF9FB;
+    border-radius: 35px;
+    box-shadow: 0 10px 30px rgba(179, 156, 208, 0.2);
+}
+
+.error-404 h1 {
+    font-size: 100px;
+    background: linear-gradient(135deg, #F4A0B5 0%, #C5B4E3 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* АДАПТИВ */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    nav {
+        justify-content: center;
+    }
+    .book-detail {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .greeting-box h1 {
+        font-size: 32px;
+    }
+}
+
+/* СКРОЛЛБАР */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #F3EAF5;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #C5B4E3 0%, #B39CD0 100%);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #8B6BC8;
+}

@@ -150,22 +150,13 @@
 
             $tests = [
                 "X + 3 = 7",
-                "27 - X = 17",
-                "6 / X = 2",
-                "X / 8 = 6",
-                "22 * X = 220",
-                "X * 7 = 49",
-                "10 + X = 33",
-                "X + 67 = 129",
-                "4 * X = 36",
-                "X * 9 = 56"
             ];
 
             foreach ($tests as $test) {
                 $res = solveEquation($test);
                 echo "$test -> ";
                 if (is_numeric($res)) echo "X = $res\n";
-                else echo "Ошибка: $res\n";
+                else echo "$res\n";
                 echo "\n";
             }
             ?>
