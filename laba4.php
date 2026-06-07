@@ -1,24 +1,34 @@
 <?php
-// Обработка POST запроса
+require_once __DIR__ . '/trig_functions.php';
+require_once __DIR__ . '/laba4_pars.php';
+
+function getExpressionFromFile(): string {
+    $root = $_SERVER['DOCUMENT_ROOT'];
+    $filePath = $root . '/php/Task/expression.txt';
+    if (file_exists($filePath)) {
+        return trim(file_get_contents($filePath));
+    }
+    return '';
+}
+
 $result = null;
 $error = null;
 $expression = '';
 
+// 1. Если это POST-запрос — вычисляем и делаем редирект
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['expression'])) {
     $expression = $_POST['expression'];
     
-    // Заменяем символы для математических операций
-    $expressionForCheck = str_replace(['×', '÷', 'π', 'e', '√', 'ln', 'log', 'fact'], ['*', '/', '3.14159', '2.71828', 'sqrt', 'ln', 'log', 'fact'], $expression);
+    // Подготовка и проверка
+    $expressionForCheck = str_replace(['×', '÷', 'π', 'e', '√', 'ln', 'log', 'fact', 'sin', 'cos', 'tan', 'cot'],
+                                       ['*', '/', '3.1415926535', '2.718281828', 'sqrt', 'ln', 'log', 'fact', 'sin', 'cos', 'tan', 'cot'],
+                                       $expression);
     
-    // Проверка на валидные символы
-    if (!preg_match('/^[0-9+\-*\/\^().%sqrtlnlogfact\s]+$/i', $expressionForCheck)) {
+    if (!preg_match('/^[0-9+\-*\/\^().%sqrtlnlogfactsincostan\s]+$/i', $expressionForCheck)) {
         $error = 'Выражение содержит недопустимые символы';
     } else {
-        // Заменяем символы для вычислений
         $expression = str_replace(['×', '÷'], ['*', '/'], $expression);
-        
         try {
-            require_once 'laba4_pars.php';
             $parser = new MathParser();
             $result = $parser->evaluate($expression);
         } catch (Exception $e) {
@@ -26,29 +36,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['expression'])) {
         }
     }
     
-    // Если есть результат - редирект с GET параметром
     if ($result !== null) {
         header('Location: laba4.php?result=' . urlencode($result) . '&expression=' . urlencode($expression));
         exit;
+    } else {
+        $displayValue = '';
+        $expression = '';
     }
 }
 
-// Получаем результат из GET параметра
-$displayValue = '';
-if (isset($_GET['result'])) {
-    $displayValue = $_GET['result'];
-    $expression = $_GET['expression'] ?? '';
-} elseif (isset($_GET['expression'])) {
-    $expression = $_GET['expression'];
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    if (isset($_GET['result'])) {
+        $displayValue = $_GET['result'];
+        $expression = $_GET['expression'] ?? '';
+    } elseif (isset($_GET['expression'])) {
+        $expression = $_GET['expression'];
+        $displayValue = '';
+    } else {
+        $expression = getExpressionFromFile();
+        $displayValue = '';
+    }
+} else {
+    $displayValue = '';
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Калькулятор с бонусными функциями</title>
+    <title>Калькулятор с тригонометрией</title>
     <link rel="stylesheet" href="laba4.css">
 </head>
 <body>
@@ -64,10 +82,10 @@ if (isset($_GET['result'])) {
             <div class="row">
                 <button type="button" class="btn memory" data-value="pi">π</button>
                 <button type="button" class="btn memory" data-value="e">e</button>
-                <button type="button" class="btn fn" data-fn="sqrt">√</button>
-                <button type="button" class="btn fn" data-fn="ln">ln</button>
-                <button type="button" class="btn fn" data-fn="log">log</button>
-                <button type="button" class="btn fn" data-fn="fact">n!</button>
+                <button type="button" class="btn fn" data-fn="sin">sin</button>
+                <button type="button" class="btn fn" data-fn="cos">cos</button>
+                <button type="button" class="btn fn" data-fn="tan">tan</button>
+                <button type="button" class="btn fn" data-fn="cot">cot</button>
             </div>
             <div class="row">
                 <button type="button" class="btn" data-char="(">(</button>
@@ -89,22 +107,23 @@ if (isset($_GET['result'])) {
                 <button type="button" class="btn num" data-char="4">4</button>
                 <button type="button" class="btn num" data-char="5">5</button>
                 <button type="button" class="btn num" data-char="6">6</button>
-                <button type="button" class="btn fn" data-fn="pow2">x²</button>
-                <button type="button" class="btn fn" data-fn="pow3">x³</button>
-                <button type="button" class="btn fn" data-fn="powx">xʸ</button>
+                <button type="button" class="btn fn" data-fn="sqrt">√</button>
+                <button type="button" class="btn fn" data-fn="ln">ln</button>
+                <button type="button" class="btn fn" data-fn="log">log</button>
             </div>
             <div class="row">
                 <button type="button" class="btn num" data-char="1">1</button>
                 <button type="button" class="btn num" data-char="2">2</button>
                 <button type="button" class="btn num" data-char="3">3</button>
                 <button type="button" class="btn" data-char=".">.</button>
-                <button type="button" class="btn fn" data-fn="neg">±</button>
+                <button type="button" class="btn fn" data-fn="fact">n!</button>
                 <button type="button" class="btn backspace" id="backspace">⌫</button>
             </div>
             <div class="row">
                 <button type="button" class="btn zero num" data-char="0">0</button>
             </div>
         </div>
+        
         <?php if (isset($error)): ?>
             <div class="error">Ошибка: <?php echo htmlspecialchars($error); ?></div>
         <?php endif; ?>
