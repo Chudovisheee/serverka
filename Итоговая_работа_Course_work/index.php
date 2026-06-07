@@ -70,5 +70,6 @@ $fields = $conn->query("SELECT id, name FROM fields ORDER BY name");
 
         <button type="submit">Отправить</button>
     </form>
+    <a href="view.php">📋 Посмотреть все сообщения (сортировка по областям)</
 </body>
 </html>
